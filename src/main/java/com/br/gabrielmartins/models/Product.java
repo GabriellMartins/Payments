@@ -17,6 +17,9 @@ public class Product {
         this.action = action;
     }
 
+    public Product(String name, double v) {
+    }
+
     public String getName() {
         return name;
     }

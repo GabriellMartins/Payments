@@ -4,7 +4,7 @@ import com.br.gabrielmartins.command.PaymentsCommand;
 import com.br.gabrielmartins.listener.ConnectionListener;
 import com.br.gabrielmartins.listener.PaymentListener;
 import com.br.gabrielmartins.services.*;
-import com.br.gabrielmartins.listeners.*;
+
 import com.br.gabrielmartins.services.database.CacheManagerService;
 import com.br.gabrielmartins.services.database.DatabaseManagerService;
 import com.br.gabrielmartins.services.permission.PermissionsService;
@@ -23,7 +23,6 @@ public class BukkitMain extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // Inicializando os serviços
         this.databaseManagerService = new DatabaseManagerService();
         this.cacheManagerService = new CacheManagerService();
         this.paymentProcessorService = new PaymentProcessorService(databaseManagerService, cacheManagerService);
@@ -33,15 +32,10 @@ public class BukkitMain extends JavaPlugin {
         this.discordIntegrationService = new DiscordIntegrationService();
         this.permissionsService = new PermissionsService();
 
-        // Registrando listeners
         getServer().getPluginManager().registerEvents(new PaymentListener(this), this);
-        getServer().getPluginManager().registerEvents(new InteractionListener(this), this);
         getServer().getPluginManager().registerEvents(new ConnectionListener(this), this);
-
-        // Registrando comandos
         getCommand("Payments").setExecutor(new PaymentsCommand(this));
 
-        // Mensagem de inicialização
         getLogger().info("Payments plugin ativado!");
     }
 
@@ -50,35 +44,27 @@ public class BukkitMain extends JavaPlugin {
         getLogger().info("Payments plugin desativado.");
     }
 
-    // Getters para os serviços
     public DatabaseManagerService getDatabaseManagerService() {
         return databaseManagerService;
     }
-
     public CacheManagerService getCacheManagerService() {
         return cacheManagerService;
     }
-
     public PaymentProcessorService getPaymentProcessorService() {
         return paymentProcessorService;
     }
-
     public ProductService getProductService() {
         return productService;
     }
-
     public TransactionHistoryService getTransactionHistoryService() {
         return transactionHistoryService;
     }
-
     public PaymentGatewayService getPaymentGatewayService() {
         return paymentGatewayService;
     }
-
     public DiscordIntegrationService getDiscordIntegrationService() {
         return discordIntegrationService;
     }
-
     public PermissionsService getPermissionsService() {
         return permissionsService;
     }

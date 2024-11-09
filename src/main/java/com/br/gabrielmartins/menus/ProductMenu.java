@@ -23,14 +23,11 @@ public class ProductMenu implements InventoryHolder, Listener {
     private final ProductService productService;
     private final String category;
 
-    // Construtor que recebe o plugin e a categoria de produtos
     public ProductMenu(BukkitMain plugin, String category) {
         this.plugin = plugin;
         this.productService = plugin.getProductService();
         this.category = category;
         this.inventory = Bukkit.createInventory(this, 27, "Produtos - " + category);
-
-        // Adiciona os produtos ao menu
         addProductsToMenu();
     }
 
@@ -38,30 +35,27 @@ public class ProductMenu implements InventoryHolder, Listener {
     public Inventory getInventory() {
         return inventory;
     }
-
-    // Adiciona os produtos ao menu com base na categoria
     private void addProductsToMenu() {
         List<Product> products = productService.getProductsByCategory(category);
 
         int slot = 0;
         for (Product product : products) {
-            if (slot >= 26) break; // Limita o número de itens no menu
-            ItemStack itemStack = new ItemStack(Material.DIAMOND); // Exemplo de item
+            if (slot >= 26) break;
+            ItemStack itemStack = new ItemStack(Material.DIAMOND);
             ItemMeta meta = itemStack.getItemMeta();
-            meta.setDisplayName("§6" + product.getName()); // Nome do produto
-            meta.setLore(List.of("§7Preço: R$" + product.getPrice())); // Preço do produto
+            meta.setDisplayName("§6" + product.getName());
+            meta.setLore(List.of("§7Preço: R$" + product.getPrice()));
             itemStack.setItemMeta(meta);
 
             inventory.setItem(slot, itemStack);
             slot++;
         }
 
-        // Adiciona o botão de "Voltar" para o menu anterior
         ItemStack backButton = new ItemStack(Material.BARRIER);
         ItemMeta backMeta = backButton.getItemMeta();
         backMeta.setDisplayName("§cVoltar");
         backButton.setItemMeta(backMeta);
-        inventory.setItem(26, backButton); // Última posição
+        inventory.setItem(26, backButton);
     }
 
     @EventHandler
@@ -75,20 +69,17 @@ public class ProductMenu implements InventoryHolder, Listener {
         ItemStack clickedItem = event.getCurrentItem();
         Player player = (Player) event.getWhoClicked();
 
-        // Lógica de compra de produto
         if (clickedItem.getType() == Material.DIAMOND) {
             String productName = clickedItem.getItemMeta().getDisplayName().substring(2); // Remove o prefixo "§6"
-            Product selectedProduct = productService.getProductByName(productName);
+            Product selectedProduct = (Product) productService.getProducts(productName);
 
             if (selectedProduct != null) {
                 player.sendMessage("§7Você comprou o produto: §6" + selectedProduct.getName() + "§7 por R$" + selectedProduct.getPrice());
-                // Aqui você pode adicionar a lógica de pagamento e dar o item ao jogador
             } else {
                 player.sendMessage("§cProduto não encontrado!");
             }
         }
 
-        // Lógica para voltar ao menu de categorias
         if (clickedItem.getType() == Material.BARRIER) {
             player.openInventory(new CategoryMenu(plugin).getInventory());
         }

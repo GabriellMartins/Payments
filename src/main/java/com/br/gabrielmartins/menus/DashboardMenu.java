@@ -30,7 +30,6 @@ public class DashboardMenu implements InventoryHolder, Listener {
     }
 
     private void addMenuItems() {
-        // Criando botões no menu principal
         ItemStack categoriesButton = new ItemStack(Material.BOOK);
         ItemMeta meta = categoriesButton.getItemMeta();
         meta.setDisplayName("§6Ver Categorias");

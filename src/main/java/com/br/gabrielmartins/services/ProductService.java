@@ -20,7 +20,7 @@ public class ProductService {
         products.add(new Product("Habilidade Especial #1", 20.0));
     }
 
-    public List<Product> getProducts() {
+    public List<Product> getProducts(String productName) {
         return products;
     }
 
