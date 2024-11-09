@@ -1,4 +1,4 @@
-package com.br.gabrielmartins.menus;
+package com.br.gabrielmartins.menus.type;
 
 import com.br.gabrielmartins.BukkitMain;
 import com.br.gabrielmartins.models.Product;
