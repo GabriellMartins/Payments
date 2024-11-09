@@ -30,7 +30,6 @@ public class CategoryMenu implements InventoryHolder, Listener {
     }
 
     private void addCategories() {
-        // Adicionando  de produtos
         ItemStack cosmeticsCategory = new ItemStack(Material.DIAMOND_SWORD);
         ItemMeta meta1 = cosmeticsCategory.getItemMeta();
         meta1.setDisplayName("§bCosméticos");
