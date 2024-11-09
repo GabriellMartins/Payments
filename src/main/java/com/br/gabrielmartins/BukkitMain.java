@@ -1,6 +1,5 @@
 package com.br.gabrielmartins;
 
-import com.br.gabrielmartins.command.PaymentsCommand;
 import com.br.gabrielmartins.listener.ConnectionListener;
 import com.br.gabrielmartins.listener.PaymentListener;
 import com.br.gabrielmartins.services.*;

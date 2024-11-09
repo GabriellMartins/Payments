@@ -1,36 +1,25 @@
 package com.br.gabrielmartins.services;
 
 import com.br.gabrielmartins.models.Product;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProductService {
 
-    private List<Product> products;
+    private Map<String, Product> products;
 
     public ProductService() {
-        this.products = new ArrayList<>();
-        loadProducts();
+        products = new HashMap<>();
+        products.put("Kit Iniciante", new Product("Kit Iniciante", "Um kit básico para começar", 20.0, "Iniciante", "Item", "Ganha Kit"));
+        products.put("Kit VIP", new Product("Kit VIP", "Um kit especial para membros VIP", 50.0, "VIP", "Item", "Ganha Kit"));
+        products.put("VIP Plus", new Product("VIP Plus", "Acesso VIP Plus com benefícios exclusivos", 100.0, "VIP", "Permissão", "Ganha Acesso"));
     }
 
-    private void loadProducts() {
-        products.add(new Product("Cosmético #1", 10.0));
-        products.add(new Product("Cosmético #2", 15.0));
-        products.add(new Product("Habilidade Especial #1", 20.0));
+    public Product getProductByName(String name) {
+        return products.get(name);
     }
 
-    public List<Product> getProducts(String productName) {
+    public Map<String, Product> getAllProducts() {
         return products;
-    }
-
-    public List<Product> getProductsByCategory(String category) {
-        List<Product> filteredProducts = new ArrayList<>();
-        for (Product product : products) {
-            if (product.getName().toLowerCase().contains(category.toLowerCase())) {
-                filteredProducts.add(product);
-            }
-        }
-        return filteredProducts;
     }
 }
