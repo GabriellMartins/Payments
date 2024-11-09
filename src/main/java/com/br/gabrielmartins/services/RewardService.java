@@ -14,7 +14,6 @@ public class RewardService {
                 givePermission(player, product);
                 break;
             case "command":
-                // Exemplo de recompensa em comando
                 executeCommand(player, product);
                 break;
             default:
