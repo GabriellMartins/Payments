@@ -1,7 +1,6 @@
 package com.br.gabrielmartins.command;
 
 import com.br.gabrielmartins.BukkitMain;
-import com.br.gabrielmartins.services.TransactionHistoryService;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

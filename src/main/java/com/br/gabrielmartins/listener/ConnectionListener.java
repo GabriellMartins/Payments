@@ -15,6 +15,6 @@ public class ConnectionListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        event.getPlayer().sendMessage("Bem-vindo ao servidor! Use /brpayments para ver suas transações.");
+        event.getPlayer().sendMessage("Bem-vindo ao servidor! Use /Payments para ver suas transações.");
     }
 }

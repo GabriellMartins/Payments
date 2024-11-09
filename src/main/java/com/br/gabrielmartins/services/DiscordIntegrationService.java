@@ -52,7 +52,7 @@ public class DiscordIntegrationService {
     public void sendPaymentDetails(String playerName, String productName, double price) {
         String title = "Pagamento Realizado";
         String description = "O jogador **" + playerName + "** comprou o produto **" + productName + "** por R$" + price;
-        String footer = "BRPayments | Transação completada com sucesso.";
+        String footer = "Payments | Transação completada com sucesso.";
 
         sendEmbeddedMessage(title, description, footer);
     }

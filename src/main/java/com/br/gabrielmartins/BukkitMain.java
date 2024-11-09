@@ -1,6 +1,6 @@
 package com.br.gabrielmartins;
 
-import com.br.gabrielmartins.command.BRPaymentsCommand;
+import com.br.gabrielmartins.command.PaymentsCommand;
 import com.br.gabrielmartins.listener.ConnectionListener;
 import com.br.gabrielmartins.listener.PaymentListener;
 import com.br.gabrielmartins.services.*;
@@ -39,15 +39,15 @@ public class BukkitMain extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ConnectionListener(this), this);
 
         // Registrando comandos
-        getCommand("brpayments").setExecutor(new BRPaymentsCommand(this));
+        getCommand("Payments").setExecutor(new PaymentsCommand(this));
 
         // Mensagem de inicialização
-        getLogger().info("BRPayments plugin ativado!");
+        getLogger().info("Payments plugin ativado!");
     }
 
     @Override
     public void onDisable() {
-        getLogger().info("BRPayments plugin desativado.");
+        getLogger().info("Payments plugin desativado.");
     }
 
     // Getters para os serviços
